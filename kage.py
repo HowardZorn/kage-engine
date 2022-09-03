@@ -21,16 +21,16 @@ class Kage:
     def type(self, another):
         self.font = another
 
-    def make_glyph(self, name: str):
+    def make_glyph(self, name: str) -> svgwrite.Drawing:
         data = self.components.search(name)
         canvas = svgwrite.Drawing(size=('200', '200'))
         return self.make_glyph2(canvas, data)
 
-    def make_glyph1(self, canvas: svgwrite.Drawing, name: str):
+    def make_glyph1(self, canvas: svgwrite.Drawing, name: str) -> svgwrite.Drawing:
         data = self.components.search(name)
         return self.make_glyph2(canvas, data)
 
-    def make_glyph2(self, canvas: svgwrite.Drawing, data: str):
+    def make_glyph2(self, canvas: svgwrite.Drawing, data: str) -> svgwrite.Drawing:
         if data != '':
             strokes_list = self.get_each_strokes(data)
             return self.font.drawer(canvas, strokes_list)

@@ -61,7 +61,8 @@ class Serif(Font):
     def drawer(self, canvas: svgwrite.Drawing, strokes_list: list[Stroke]):
         self.serif_strokes = [SerifStroke(i) for i in strokes_list]
         self.adjust_stroke()
-        self.draw_stroke()
+        self.draw_stroke(canvas)
+        return canvas
 
     def adjust_stroke(self):
         self.adjust_hane()      # ハネ
@@ -315,7 +316,7 @@ class Serif(Font):
         for serif_stroke in self.serif_strokes:
             loop5(serif_stroke)
 
-    def draw_stroke(self):
+    def draw_stroke(self, canvas: svgwrite.Drawing):
         for serif_stroke in self.serif_strokes:
             stroke = serif_stroke.stroke
             if stroke.a1_100 == 0:

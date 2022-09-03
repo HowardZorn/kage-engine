@@ -2,6 +2,7 @@ from ...vec2 import Vec2
 from ..serif import Serif
 from ...util import generate_fatten_curve, normalize
 import svgwrite
+import svgwrite.path
 
 class SansStrokeDrawer:
     @staticmethod
@@ -23,15 +24,15 @@ class SansStrokeDrawer:
         if delta2 != 0:
             vec_d2 = Vec2(0, delta2) if vec_2 == vec_s2 else normalize(vec_2 - vec_s2, delta2)
             vec_2 += vec_d2
-        canvas.add(generate_fatten_curve(vec_1, vec_s1, vec_s2, vec_2, font.kWidth))
+        canvas.add(generate_fatten_curve(vec_1, vec_s1, vec_s2, vec_2, font.kWidth * 2))
         # TODO
 
     @staticmethod
-    def DrawCurve(font: Serif, canvas: svgwrite.Drawing, vec_1: Vec2, vec_s1: Vec2, vec_s2: Vec2, vec_2: Vec2, a1: int, a2: int):
+    def DrawBezier(font: Serif, canvas: svgwrite.Drawing, vec_1: Vec2, vec_s1: Vec2, vec_s2: Vec2, vec_2: Vec2, a1: int, a2: int):
         SansStrokeDrawer.__DrawCurveU(font, canvas, vec_1, vec_s1, vec_s2, vec_2, a1, a2)
 
     @staticmethod
-    def DrawBezier(font: Serif, canvas: svgwrite.Drawing, vec_1: Vec2, vec_s: Vec2, vec_2: Vec2, a1: int, a2: int):
+    def DrawCurve(font: Serif, canvas: svgwrite.Drawing, vec_1: Vec2, vec_s: Vec2, vec_2: Vec2, a1: int, a2: int):
         SansStrokeDrawer.__DrawCurveU(font, canvas, vec_1, vec_s, vec_s, vec_2, a1, a2)
     
     @staticmethod
@@ -40,6 +41,19 @@ class SansStrokeDrawer:
             vec_1, vec_2 = vec_2, vec_1
             a1, a2 = a2, a1
         
+        norm = normalize(vec_1 - vec_2, font.kWidth)
+
+        if a1 % 10 == 2:
+            vec_1 += norm
+        elif a1 % 10 == 3:
+            vec_1 += norm * font.kKakato
+        
+        if a2 % 10 == 2:
+            vec_2 -= norm
+        elif a2 % 10 == 3:
+            vec_2 -= norm * font.kKakato
+
+        canvas.add(svgwrite.path.Path(d = f'M{vec_1.x},{vec_1.y} L{vec_2.x},{vec_2.y}', stroke = 'black', stroke_width = font.kWidth * 2, fill = 'none'))
         
 
         
