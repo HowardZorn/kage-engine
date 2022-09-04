@@ -81,20 +81,20 @@ class Stroke:
         maxX = -np.inf
         maxY = -np.inf
         a1 = self.a1_100 if self.a1_opt == 0 else 6 # XXX ?????
-        minX = np.min([minX, self.vec_4.x])
-        maxX = np.max([maxX, self.vec_4.x])
-        minY = np.min([minY, self.vec_4.y])
-        maxY = np.max([maxY, self.vec_4.y])
+        minX = np.nanmin([minX, self.vec_4.x])
+        maxX = np.nanmax([maxX, self.vec_4.x])
+        minY = np.nanmin([minY, self.vec_4.y])
+        maxY = np.nanmax([maxY, self.vec_4.y])
         if a1 in [2,3,4]:
-            minX = np.min([minX, self.vec_3.x])
-            maxX = np.max([maxX, self.vec_3.x])
-            minY = np.min([minY, self.vec_3.y])
-            maxY = np.max([maxY, self.vec_3.y])
+            minX = np.nanmin([minX, self.vec_3.x])
+            maxX = np.nanmax([maxX, self.vec_3.x])
+            minY = np.nanmin([minY, self.vec_3.y])
+            maxY = np.nanmax([maxY, self.vec_3.y])
         elif a1 in [1,99]:
-            minX = np.min([minX, self.vec_1.x, self.vec_2.x])
-            maxX = np.max([maxX, self.vec_1.x, self.vec_2.x])
-            minY = np.min([minY, self.vec_1.y, self.vec_2.y])
-            maxY = np.max([maxY, self.vec_1.y, self.vec_2.y])
+            minX = np.nanmin([minX, self.vec_1.x, self.vec_2.x])
+            maxX = np.nanmax([maxX, self.vec_1.x, self.vec_2.x])
+            minY = np.nanmin([minY, self.vec_1.y, self.vec_2.y])
+            maxY = np.nanmax([maxY, self.vec_1.y, self.vec_2.y])
         elif a1 == 0:
             pass
         

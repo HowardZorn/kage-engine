@@ -9,8 +9,7 @@ import numpy as np
 class Kage:
     def __init__(self, ignore_component_version = False) -> None:
         self.components = Components(ignore_component_version)
-        self.font = Serif() # TODO
-        # self.font.set_size(size) # TODO
+        self.font = Serif() # TODO: フォントを選択できるようにする
         pass
 
     @property
@@ -83,7 +82,7 @@ class Kage:
 
         return strokes
 
-    def get_box(self, strokes):
+    def get_box(self, strokes: list[Stroke]) -> Namespace:
         minX = 200
         minY = 200
         maxX = 0
