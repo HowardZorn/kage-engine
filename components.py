@@ -7,7 +7,7 @@ class Components:
         self.hash = dict()
         self.ignore_version = ignore_version
 
-    def search(self, name: str):
+    def search(self, name: str) -> str:
         if name in self.hash:
             return self.hash[name]
         elif self.ignore_version:
@@ -15,6 +15,8 @@ class Components:
                 name = name[0:name.find('@')]
                 if name in self.hash:
                     return self.hash[name]
+                else:
+                    return ""
         else:
             return ""
 

@@ -32,12 +32,3 @@ def ternary_search_min(f, left, right, absolute_precision = 1E-5) -> float:
         lambda x: -f(x),
         left, right, absolute_precision
     )
-
-
-def generate_fatten_curve(vec_1: Vec2, vec_s1: Vec2, vec_s2: Vec2, vec_2: Vec2, width) -> svgwrite.path.Path:
-    is_quadratic = all(vec_s1 == vec_s2)
-    if is_quadratic:
-        return svgwrite.path.Path(d = f"M{vec_1.x},{vec_1.y} Q{vec_s1.x},{vec_s1.y} {vec_2.x},{vec_2.y}", stroke = 'black', stroke_width = width, fill = 'none', stroke_linejoin="bevel")
-    else:
-        return svgwrite.path.Path(d = f"M{vec_1.x},{vec_1.y} C{vec_s1.x},{vec_s1.y} {vec_s2.x},{vec_s2.y} {vec_2.x},{vec_2.y}", stroke = 'black', stroke_width = width, fill = 'none', stroke_linejoin="bevel")
-    # TODO

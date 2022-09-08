@@ -39,15 +39,14 @@ class Stroke:
     def get_control_segments(self):
         res = []
         a1 = self.a1_100 if self.a1_opt == 0 else 1 # XXX: ???
-        while(True):
-            if a1 in [0,8,9]:
-                break
-            elif a1 in [6,7]:
-                res.insert(0, [self.vec_3, self.vec_4])
-            elif a1 in [2,12,3,4]:
-                res.insert(0, [self.vec_2, self.vec_3])
+        if a1 in [0,8,9]:
+            pass
+        if a1 in [6,7]:
+            res.insert(0, [self.vec_3, self.vec_4])
+        if a1 in [2,12,3,4] or a1 in [6,7]:
+            res.insert(0, [self.vec_2, self.vec_3])
+        if a1 not in [0,8,9] or a1 in [6,7,2,12,3,4]:
             res.insert(0, [self.vec_1, self.vec_2])
-            break
         return res
     
     def is_cross(self, vec_b1: Vec2, vec_b2: Vec2):
@@ -81,21 +80,22 @@ class Stroke:
         maxX = -np.inf
         maxY = -np.inf
         a1 = self.a1_100 if self.a1_opt == 0 else 6 # XXX ?????
-        minX = np.nanmin([minX, self.vec_4.x])
-        maxX = np.nanmax([maxX, self.vec_4.x])
-        minY = np.nanmin([minY, self.vec_4.y])
-        maxY = np.nanmax([maxY, self.vec_4.y])
-        if a1 in [2,3,4]:
+        if a1 not in [2,3,4,1,99,0]:
+            minX = np.nanmin([minX, self.vec_4.x])
+            maxX = np.nanmax([maxX, self.vec_4.x])
+            minY = np.nanmin([minY, self.vec_4.y])
+            maxY = np.nanmax([maxY, self.vec_4.y])
+        if a1 in [2,3,4] or a1 not in [2,3,4,1,99,0]:
             minX = np.nanmin([minX, self.vec_3.x])
             maxX = np.nanmax([maxX, self.vec_3.x])
             minY = np.nanmin([minY, self.vec_3.y])
             maxY = np.nanmax([maxY, self.vec_3.y])
-        elif a1 in [1,99]:
+        if a1 in [1,99] or a1 in [2,3,4] or a1 not in [2,3,4,1,99,0]:
             minX = np.nanmin([minX, self.vec_1.x, self.vec_2.x])
             maxX = np.nanmax([maxX, self.vec_1.x, self.vec_2.x])
             minY = np.nanmin([minY, self.vec_1.y, self.vec_2.y])
             maxY = np.nanmax([maxY, self.vec_1.y, self.vec_2.y])
-        elif a1 == 0:
+        if a1 == 0:
             pass
         
         return Namespace(**{'minX': minX, 'maxX': maxX, 'minY': minY, 'maxY': maxY})

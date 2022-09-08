@@ -3,7 +3,6 @@ from ...stroke import Stroke
 from ...util   import normalize
 from ..font    import Font
 from . serif_stroke import SerifStroke
-from . serif_stroke_drawer import SerifStrokeDrawer
 
 import svgwrite
 import numpy as np
@@ -317,6 +316,7 @@ class Serif(Font):
             loop5(serif_stroke)
 
     def draw_stroke(self, canvas: svgwrite.Drawing):
+        from . serif_stroke_drawer import SerifStrokeDrawer
         for serif_stroke in self.serif_strokes:
             stroke = serif_stroke.stroke
             if stroke.a1_100 == 0:

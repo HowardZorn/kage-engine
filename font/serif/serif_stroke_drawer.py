@@ -1,6 +1,6 @@
 from ...vec2 import Vec2
-from ..serif import Serif
-from ...util import generate_fatten_curve, normalize
+from ...util import normalize
+from . serif import Serif
 import svgwrite
 import svgwrite.path
 import numpy as np

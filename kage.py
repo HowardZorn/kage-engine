@@ -1,8 +1,8 @@
-from argparse import Namespace
 from . components import Components
 from . stroke import Stroke
 from . vec2 import Vec2
 from . font import Serif
+from argparse import Namespace
 import svgwrite
 import numpy as np
 
@@ -10,7 +10,6 @@ class Kage:
     def __init__(self, ignore_component_version = False) -> None:
         self.components = Components(ignore_component_version)
         self.font = Serif() # TODO: フォントを選択できるようにする
-        pass
 
     @property
     def type(self):
