@@ -4,18 +4,17 @@ from ..serif import Serif
 import svgwrite
 import numpy as np
 
-class Sans(Serif):
+class Round(Serif):
     def __init__(self, size=2) -> None:
         super().__init__(size)
-        self.kKakato = 1.5
         self.kWidth = 6
     
     def draw_strokes(self, canvas: svgwrite.Drawing):
-        from .sans_stroke_drawer import SansStrokeDrawer
-        stroke_drawer = SansStrokeDrawer(self, canvas)
+        from .round_stroke_drawer import RoundStrokeDrawer
+        stroke_drawer = RoundStrokeDrawer(self, canvas)
         for serif_stroke in self.serif_strokes:
             stroke = serif_stroke.stroke
-            if stroke.a1_100 == 0: # TODO:Transforms
+            if stroke.a1_100 == 0: # None
                 pass
             elif stroke.a1_100 == 1: # Linear stroke, 直線
                 if stroke.a3_100 == 4 and stroke.a3_opt_2 == 0: # and serif_stroke.hane_adjustment == 0 # left hook, 左撥ね上げ
@@ -82,8 +81,7 @@ class Sans(Serif):
                     stroke_drawer.DrawBezier(stroke.vec_1, stroke.vec_2, stroke.vec_3, vec_t, stroke.a2_100, 1)
                     stroke_drawer.DrawCurve(vec_t, stroke.vec_4, stroke.vec_4 - Vec2(self.kMage * 2, self.kMage * 0.5), 1, 0, False, True)
                 elif stroke.a3_100 == 5 and stroke.a3_opt == 0: # right hook
-                    vec_t1 = stroke.vec_4 + Vec2(-self.kMage, 0) if stroke.vec_4.x - self.kMage > stroke.vec_3.x else Vec2(stroke.vec_3.x, stroke.vec_4.y) 
-                    # if else: for '戰'
+                    vec_t1 = stroke.vec_4 + Vec2(-self.kMage, 0) # bug: 戰
                     vec_t2 = stroke.vec_4 + Vec2(self.kMage * 0.5, -self.kMage * 2)
 
                     stroke_drawer.DrawBezier(stroke.vec_1, stroke.vec_2, stroke.vec_3, vec_t1, stroke.a2_100, 1)
