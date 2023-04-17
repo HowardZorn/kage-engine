@@ -2,7 +2,7 @@
 
 Kage Engine is a glyph generation engine for Chinese Characters (漢字、汉字), which is mainly developed by [@kamichikoichi](https://github.com/kamichikoichi/kage-engine) (上地宏一) and [@kurgm](https://github.com/kurgm/kage-engine). 
 
-Based on @kurgm's nodejs implementation, this repository focuses on drawing Chinese character glyphs entirely with Bezier curves instead of the previous polygons.
+Based on @kurgm's nodejs implementation, this repository focuses on drawing Chinese character glyphs entirely with Bézier curves instead of the previous polygons.
 
 # Example Usage
 
@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
 - doc: Lack of Documentation.
 
-# Scholarship Infomation
+# Scholarship Information
 
 [Kamichi Koichi](https://github.com/kamichikoichi) wrote a paper about his Kage Engine:
 
