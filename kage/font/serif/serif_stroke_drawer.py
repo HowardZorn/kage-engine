@@ -51,7 +51,8 @@ class SerifStrokeDrawer:
             hosomi = 0.4 * (1 - np.hypot(*(vec_2 - vec_1))) / 50
             
         
-    # TODO
+    # TODO: Draw a offset curve with variable displacements
+        raise NotImplementedError("TODO: Draw a offset curve with variable displacements")
 
     def DrawBezier(self, vec_1: Vec2, vec_s1: Vec2, vec_s2: Vec2, vec_2: Vec2, a1: int, a2: int, opt1, hane_adjustment, opt3, opt4):
         SerifStrokeDrawer.__DrawCurveU(self, vec_1, vec_s1, vec_s2, vec_2, a1, a2, opt1, hane_adjustment, opt3, opt4)
@@ -60,5 +61,5 @@ class SerifStrokeDrawer:
         SerifStrokeDrawer.__DrawCurveU(self, vec_1, vec_s, vec_s, vec_2, a1, a2, opt1, hane_adjustment, opt3, opt4)
     
     def DrawLine(self, vec_1: Vec2, vec_2: Vec2, a1: int, a2: int, opt1, uroko_adjustment, kakato_adjustment):
-        pass
-    # TODO
+        raise NotImplementedError("TODO: Draw a offset curve with variable displacements")
+    # TODO: Draw a offset curve with variable displacements
