@@ -41,6 +41,12 @@ if __name__ == '__main__':
         # range(0x4E00, 0x9FA5 + 1)
 ```
 
+# Sample
+
+<img src="https://github.com/HowardZorn/kage-engine/raw/dev/output/u5f71.svg" />
+
+u+5f71，“影”
+
 # TODO
 
 - Serif: `DrawCurve` and `DrawLine` methods are not implemented. Algorithms for drawing offset curves with variable displacement have not been designed.
