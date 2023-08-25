@@ -15,14 +15,19 @@ import csv
 import os
 import multiprocessing
 
+# Set the flag `ignore_component_version` if you want to use the glyph data in `dump_newest_only.txt`.
+# This is because `dump_newest_only.txt` only contains the latest version of components.
+# However, glyphs in `dump_newest_only.txt` may reference older versions of multiple components.
 k = Kage(ignore_component_version=True)
 k.font = Sans()
 
+# generate a glyph
 def gen(i: int):
     key = f'u{i:x}'
     canvas = k.make_glyph(name=key)
     canvas.saveas(os.path.join('./output', f'{key}.svg'))
 
+# read the glyph data
 with open('dump_newest_only.txt', 'r', encoding='utf-8') as f:
     lines = f.readlines()
 
@@ -34,6 +39,7 @@ for i, line in enumerate(lines):
 
     k.components.push(line[0], line[2])
 
+# parallel generation
 if __name__ == '__main__':
     with multiprocessing.Pool(16) as pool:
         pool.map(gen, list([0x6708, 0x6c23, 0x6728, 0x9ed1, 0x6230])) 
