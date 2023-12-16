@@ -11,6 +11,7 @@ Firstly, You should download `dump_newest_only.txt` or `dump_all_versions.txt` f
 ```python
 from kage import Kage
 from kage.font.sans import Sans
+from kage.font.serif import Serif
 import csv
 import os
 import multiprocessing
@@ -19,6 +20,7 @@ import multiprocessing
 # This is because `dump_newest_only.txt` only contains the latest version of components.
 # However, glyphs in `dump_newest_only.txt` may reference older versions of multiple components.
 k = Kage(ignore_component_version=True)
+# You can use `Serif()` as well!
 k.font = Sans()
 
 # generate a glyph
@@ -51,11 +53,13 @@ if __name__ == '__main__':
 
 <img src="https://github.com/HowardZorn/kage-engine/raw/dev/output/u5f71.svg" />
 
+<img src="https://github.com/HowardZorn/kage-engine/raw/dev/output/u5f71_serif.svg">
+
 u+5f71，“影”
 
 # TODO
 
-- Serif: `DrawCurve` and `DrawLine` methods are not implemented. Algorithms for drawing offset curves with variable displacement have not been designed.
+- Serif: Algorithms for drawing offset curves with variable displacement have not been designed.
 
 - doc: Lack of Documentation.
 

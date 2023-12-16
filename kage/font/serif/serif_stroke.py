@@ -6,8 +6,8 @@ class SerifStroke:
         self.kirikuchi_adjustment = self.stroke.a2_opt_1
         self.tate_adjustment = self.stroke.a2_opt_2 + self.stroke.a2_opt_3 * 10
         self.hane_adjustment = self.stroke.a3_opt_1
-        self.uroko_adjustment = self.stroke.a3_opt
-        self.kakato_adjustment = self.stroke.a3_opt
+        self.uroko_adjustment = int(self.stroke.a3_opt)
+        self.kakato_adjustment = int(self.stroke.a3_opt)
         self.mage_adjustment = self.stroke.a3_opt_2
 
     def __repr__(self) -> str:

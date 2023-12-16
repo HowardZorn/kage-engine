@@ -1,7 +1,7 @@
 from . components import Components
 from . stroke import Stroke
 from . vec2 import Vec2
-from . font import Serif
+from . font.serif import Serif
 from argparse import Namespace
 import svgwrite
 import numpy as np
@@ -22,13 +22,13 @@ class Kage:
     def make_glyph(self, name: str) -> svgwrite.Drawing:
         data = self.components.search(name)
         canvas = svgwrite.Drawing(size=('200', '200'))
-        return self.make_glyph2(canvas, data)
+        return self.make_glyph_with_data(canvas, data)
 
-    def make_glyph1(self, canvas: svgwrite.Drawing, name: str) -> svgwrite.Drawing:
+    def make_glyph_with_name(self, canvas: svgwrite.Drawing, name: str) -> svgwrite.Drawing:
         data = self.components.search(name)
-        return self.make_glyph2(canvas, data)
+        return self.make_glyph_with_data(canvas, data)
 
-    def make_glyph2(self, canvas: svgwrite.Drawing, data: str) -> svgwrite.Drawing:
+    def make_glyph_with_data(self, canvas: svgwrite.Drawing, data: str) -> svgwrite.Drawing:
         if data != '':
             strokes_list = self.get_each_strokes(data)
             return self.font.drawer(canvas, strokes_list)
